@@ -192,8 +192,8 @@ function renderChart() {
       datasets: [
         {
           label: 'Products',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
+          backgroundColor: 'rgb(150, 121, 170)',
+          borderColor:  'rgb(150, 121, 170)',
           data: getClickedScore(),
         }
       ]
@@ -225,7 +225,6 @@ function getshownnumber() {
   }
   return shownScore;
 }
-
 
 
 
