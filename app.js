@@ -125,7 +125,6 @@ function clickHandler(event) {
   } else if (clickedId === 'right-image') {
     productClicked = Product.rightObject;
   } else {
-    console.log('Um, what was clicked on???', clickedId);
   }
 
   if (productClicked) {
@@ -234,27 +233,3 @@ function getshownnumber() {
 
 
 
-
-function renderChart2() {
-
-  var ctx = document.getElementById('theotherone').getContext('2d');
-
-  var chart = new Chart(ctx, {
-
-    type: 'bar',
-
-    data: {
-      labels: getProductTitles2(),
-
-      datasets: [
-        {
-          label: 'Products',
-          backgroundColor: 'rgb(255, 99, 132)',
-          borderColor: 'rgb(255, 99, 132)',
-          data: getshownnumber(),
-        }
-      ]
-    },
-    options: {}
-  })
-}
