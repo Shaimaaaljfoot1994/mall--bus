@@ -5,7 +5,9 @@
   font-family: 'Righteous', sans-serif;
 }
 
-
+* {
+    box-sizing: border-box;
+  }
 
 main {
   margin-bottom: 80px;
