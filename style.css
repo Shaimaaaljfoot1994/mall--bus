@@ -1,7 +1,5 @@
- body {
-  text-align: center;
-  background:radial-gradient(#c0253a, #fff) fixed;
-  text-align: center;
+  body {
+  text-align: center;  text-align: center;
   font-family: 'Righteous', sans-serif;
 }
 
@@ -84,4 +82,6 @@ section div {
     height: 200px;
     border-radius: 5%;
   }
-  
+   
+
+   
