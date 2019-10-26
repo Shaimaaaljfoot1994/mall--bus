@@ -340,10 +340,10 @@ function renderChart2() {
 
 function updateclicked(){
   var dataString=JSON.stringify( Product.all);
-  localStorage.setItem('reports',dataString);
+  localStorage.setItem('shaimaa2',dataString);
 }
 function getClicked(){
-  var data =localStorage.getItem('reports');
+  var data =localStorage.getItem('shaimaa2');
   var dataOriginal=JSON.parse(data);
   if(dataOriginal){
     for (var i=0;i<dataOriginal.length;i++){
