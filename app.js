@@ -40,6 +40,10 @@ new Product('unicorn', 'image/unicorn.jpg');
 new Product('usb', 'image/usb.gif');
 new Product('water-can', 'image/water-can.jpg');
 new Product('win-glass', 'image/wine-glass.jpg');
+
+
+
+
 function renderNewProduct() {
 
   var forbidden = [Product.leftObject, Product.centerObject, Product.rightObject];
@@ -125,13 +129,13 @@ function clickHandler(event) {
   } else if (clickedId === 'right-image') {
     productClicked = Product.rightObject;
   } else {
+    console.log('Um, what was clicked on???', clickedId);
   }
 
   if (productClicked) {
     productClicked.clickCtr++;
     Product.roundCtr++;
 
-    updateTotals();
 
     if (Product.roundCtr === Product.roundLimit) {
 
@@ -141,34 +145,31 @@ function clickHandler(event) {
       renderChart();
 
       renderChart2();
+      updateclicked();
+      updateTotals();
 
     } else {
-
       renderNewProduct();
     }
   }
 }
 Product.container.addEventListener('click', clickHandler);
 
-updateTotals();
-
-renderNewProduct();
-
 function getProductTitles() {
 
   var productTitles = [];
-
+  
   for (var i = 0; i < Product.all.length; i++) {
     var productInstance = Product.all[i];
     productTitles.push(productInstance.title + ' clicked');
-
+    
   }
   return productTitles;
 }
 function getClickedScore() {
-
+  
   var ClickedScore = [];
-
+  
   for (var i = 0; i < 20; i++) {
     var ClickedInstance = Product.all[i];
     ClickedScore.push(ClickedInstance.clickCtr);
@@ -178,20 +179,110 @@ function getClickedScore() {
 }
 
 function renderChart() {
-
+  
   var ctx = document.getElementById('myChart').getContext('2d');
-
+  
   var chart = new Chart(ctx, {
-
+    
     type: 'bar',
-
+    
     data: {
       labels: getProductTitles(),
 
       datasets: [
         {
           label: 'Products',
-                   backgroundColor: [
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.4)',
+            'rgba(54, 162, 235, 0.4)',
+            'rgba(255, 206, 86, 0.4)',
+            'rgba(75, 192, 192, 0.4)',
+            'rgba(153, 102, 255, 0.4)',
+            'rgba(255, 159, 64, 0.4)',
+            'rgba(255, 99, 132, 0.4)',
+            'rgba(54, 162, 235, 0.4)',
+            'rgba(255, 206, 86, 0.4)',
+            'rgba(75, 192, 192, 0.4)',
+            'rgba(153, 102, 255, 0.4)',
+            'rgba(255, 159, 64, 0.4)',
+            'rgba(255, 99, 132, 0.4)',
+            'rgba(54, 162, 235, 0.4)',
+            'rgba(255, 206, 86, 0.4)',
+            'rgba(75, 192, 192, 0.4)',
+            'rgba(153, 102, 255, 0.4)',
+            'rgba(255, 159, 64, 0.4)',
+            'rgba(255, 99, 132, 0.4)',
+            'rgba(54, 162, 235, 0.4)'
+          ],
+          borderColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)',
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)'
+          ],
+          data: getClickedScore(),
+        }
+      ]
+    },
+    options: {}
+  })
+}
+
+
+function getProductTitles2() {
+
+  var productTitles = [];
+  
+  for (var i = 0; i < Product.all.length; i++) {
+    var productInstance = Product.all[i];
+    productTitles.push(productInstance.title + ' shown');
+
+  }
+  return productTitles;
+}
+function getshownnumber() {
+  
+  var shownScore = [];
+
+  for (var i = 0; i < Product.all.length; i++) {
+    var shownInstance = Product.all[i];
+    shownScore.push(shownInstance.shownCtr);
+
+  }
+  return shownScore;
+}
+
+function renderChart2() {
+  
+  var ctx = document.getElementById('theotherone').getContext('2d');
+  
+  var chart = new Chart(ctx, {
+
+    type: 'bar',
+    
+    data: {
+      labels: getProductTitles2(),
+      
+      datasets: [
+        {
+          label: 'Products',
+          backgroundColor: [
             'rgba(255, 99, 132, 0.4)',
             'rgba(54, 162, 235, 0.4)',
             'rgba(255, 206, 86, 0.4)',
@@ -247,130 +338,35 @@ function renderChart() {
 
 
 
-
-
-
-
-
-
-
-function getProductTitles2() {
-
-  var productTitles = [];
-
-  for (var i = 0; i < Product.all.length; i++) {
-    var productInstance = Product.all[i];
-    productTitles.push(productInstance.title + ' shown');
-
-  }
-  return productTitles;
-}
-function getshownnumber() {
-
-  var shownScore = [];
-
-  for (var i = 0; i < Product.all.length; i++) {
-    var shownInstance = Product.all[i];
-    shownScore.push(shownInstance.shownCtr);
-
-  }
-  return shownScore;
-}
-
-function renderChart2() {
-
-  var ctx = document.getElementById('theotherone').getContext('2d');
-
-  var chart = new Chart(ctx, {
-
-    type: 'bar',
-
-    data: {
-      labels: getProductTitles2(),
-
-      datasets: [
-        {
-          label: 'Products',
-         
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.4)',
-            'rgba(54, 162, 235, 0.4)',
-            'rgba(255, 206, 86, 0.4)',
-            'rgba(75, 192, 192, 0.4)',
-            'rgba(153, 102, 255, 0.4)',
-            'rgba(255, 159, 64, 0.4)',
-            'rgba(255, 99, 132, 0.4)',
-            'rgba(54, 162, 235, 0.4)',
-            'rgba(255, 206, 86, 0.4)',
-            'rgba(75, 192, 192, 0.4)',
-            'rgba(153, 102, 255, 0.4)',
-            'rgba(255, 159, 64, 0.4)',
-            'rgba(255, 99, 132, 0.4)',
-            'rgba(54, 162, 235, 0.4)',
-            'rgba(255, 206, 86, 0.4)',
-            'rgba(75, 192, 192, 0.4)',
-            'rgba(153, 102, 255, 0.4)',
-            'rgba(255, 159, 64, 0.4)',
-            'rgba(255, 99, 132, 0.4)',
-            'rgba(54, 162, 235, 0.4)'
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-            'rgba(255, 159, 64, 1)',
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)'
-          ],
-          data: getshownnumber(),
-        }
-      ]
-    },
-    options: {}
-  })
-}
-
-
-
-
 function updateclicked(){
-  var datastring=JSON.stringify( Product.all);
-  localStorage.setItem('reports',datastring);
+  var dataString=JSON.stringify( Product.all);
+  localStorage.setItem('reports',dataString);
 }
 function getClicked(){
   var data =localStorage.getItem('reports');
-  var dataoriginal=JSON.parse(data);
-  if(dataoriginal){
-    for (var i=0;i<dataoriginal.length;i++){
-      var rawObject = dataoriginal[i];
+  var dataOriginal=JSON.parse(data);
+  if(dataOriginal){
+    for (var i=0;i<dataOriginal.length;i++){
+      var rawObject = dataOriginal[i];
       var currentProduct =Product.all[i];
       currentProduct.clickCtr=rawObject.clickCtr;
       currentProduct.shownCtr=rawObject.shownCtr;
     
-  
+     
       
     }
-    console.log('rawobject', dataoriginal[0].clickCtr);
+    console.log('rawobject', dataOriginal[0].clickCtr);
     console.log('product', Product.all[0].clickCtr);
 
     renderNewProduct();  }
   }
   
+  
+  
+  
+
+  
   renderNewProduct();
 
   getClicked();
-  updateTotals();
+
